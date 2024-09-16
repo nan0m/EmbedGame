@@ -1,0 +1,70 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="CultureJam"
+run/main_scene="res://22_trash/debugtest.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+WindowBGone="*res://addons/window_b_gone/wbg_autoload.gd"
+PauseMenu="*res://02_ui/pause_menu/pause_menu.tscn"
+SceneLoader="*res://01_assets/autoload/scene_loader/scene_loader.tscn"
+EmbedGameAutoload="*res://addons/nan0m.embed_game/embed_game_autoload.gd"
+
+[display]
+
+window/subwindows/embed_subwindows=false
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/nan0m.embed_game/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://01_assets/components/": "purple",
+"res://01_assets/meshes/": "teal",
+"res://01_assets/statemachine/": "purple",
+"res://11_leon/": "yellow"
+}
+
+[importer_defaults]
+
+scene={
+"_subresources": {},
+"animation/fps": 30,
+"animation/import": true,
+"animation/import_rest_as_RESET": false,
+"animation/remove_immutable_tracks": true,
+"animation/trimming": false,
+"gltf/embedded_image_handling": 0,
+"gltf/naming_version": 1,
+"import_script/path": "res://10_util/import_script/default_importer.gd",
+"meshes/create_shadow_meshes": true,
+"meshes/ensure_tangents": true,
+"meshes/force_disable_compression": false,
+"meshes/generate_lods": true,
+"meshes/light_baking": 1,
+"meshes/lightmap_texel_size": 0.2,
+"nodes/apply_root_scale": true,
+"nodes/import_as_skeleton_bones": false,
+"nodes/root_name": "",
+"nodes/root_scale": 1.0,
+"nodes/root_type": "",
+"skins/use_named_skins": true
+}
+
+[physics]
+
+3d/physics_engine="JoltPhysics3D"

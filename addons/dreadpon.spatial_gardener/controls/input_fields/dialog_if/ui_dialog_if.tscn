@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1r8m47n3hvh4"]
+
+[ext_resource type="Script" path="res://addons/dreadpon.spatial_gardener/controls/input_fields/dialog_if/ui_dialog_if.gd" id="1"]
+
+[node name="UI_Dialog_IF" type="ConfirmationDialog"]
+ok_button_text = "Apply"
+script = ExtResource("1")
+metadata/class = "UI_Dialog_IF"
+
+[node name="VBoxContainer_Main" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+
+[node name="PanelContainer_Fields" type="PanelContainer" parent="VBoxContainer_Main"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer_Fields" type="VBoxContainer" parent="VBoxContainer_Main/PanelContainer_Fields"]
+layout_mode = 2

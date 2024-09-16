@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://blw02gc85o6ro"]
+
+[node name="UI_Section_Brush" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 31.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer_Properties" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer_Properties" type="VBoxContainer" parent="ScrollContainer_Properties"]
+layout_mode = 2
+size_flags_horizontal = 3

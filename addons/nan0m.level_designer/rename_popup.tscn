@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmwc768o57eeq"]
+
+[ext_resource type="Script" path="res://addons/nan0m.level_designer/rename_popup.gd" id="1_ou513"]
+
+[node name="RenamePopup" type="PopupPanel"]
+size = Vector2i(208, 100)
+visible = true
+script = ExtResource("1_ou513")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Enter new tab Name"
+
+[node name="RenameLineEdit" type="LineEdit" parent="Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="text_submitted" from="Control/RenameLineEdit" to="." method="_on_line_edit_text_submitted"]

@@ -1,0 +1,243 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhako6sbitb4s"]
+
+[ext_resource type="Script" path="res://addons/nan0m.level_designer/dock.gd" id="1_2sxkd"]
+[ext_resource type="Texture2D" uid="uid://dg5wcoqotkpuf" path="res://addons/nan0m.level_designer/icons/arrow-ios-back.svg" id="2_1ls44"]
+[ext_resource type="PackedScene" uid="uid://daeohyd6e8o30" path="res://addons/nan0m.level_designer/base_tab.tscn" id="2_t0eui"]
+[ext_resource type="Script" path="res://addons/nan0m.level_designer/base_tab.gd" id="3_6q7ti"]
+[ext_resource type="Texture2D" uid="uid://bcmd7jvi685p3" path="res://addons/nan0m.level_designer/icons/arrow-ios-forward.svg" id="3_jf7tn"]
+
+[sub_resource type="GDScript" id="GDScript_wx5vh"]
+script/source = "@tool
+extends CheckButton
+
+@export var nodes_to_hide: Array[Control]
+
+
+func _ready() -> void:
+	pressed.connect(Callable(self, \"_on_show_advanced_button_pressed\"))
+	pass 
+
+func _on_show_advanced_button_pressed():
+	for i in nodes_to_hide:
+		i.visible = button_pressed
+"
+
+[node name="dock" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_2sxkd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer"]
+clip_contents = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Add" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Add"
+
+[node name="RemoveItem" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Remove"
+
+[node name="MoveItemLeft" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+icon = ExtResource("2_1ls44")
+icon_alignment = 1
+expand_icon = true
+
+[node name="MoveItemRight" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+icon = ExtResource("3_jf7tn")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AlignWithSurfaceCheckbox" type="CheckBox" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "(1) Align with Surface"
+
+[node name="SnapToFloor" type="CheckBox" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "(2) Snap To Floor"
+
+[node name="AddToSceneRoot" type="CheckBox" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "(3) Add to Scene Root"
+
+[node name="RotationOptions" type="OptionButton" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 7
+popup/item_0/text = " None (Shift + 4)"
+popup/item_1/text = "X+  (4)"
+popup/item_1/id = 1
+popup/item_2/text = "X-  (4)"
+popup/item_2/id = 2
+popup/item_3/text = "Y+  (4)"
+popup/item_3/id = 3
+popup/item_4/text = "Y-  (4)"
+popup/item_4/id = 4
+popup/item_5/text = "Z+  (4)"
+popup/item_5/id = 5
+popup/item_6/text = "Z-  (4)"
+popup/item_6/id = 6
+
+[node name="SnapEnabledCheckBox" type="CheckBox" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "(5) Snap Enabled"
+
+[node name="SnapVectorContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SnapVectorX" type="SpinBox" parent="HBoxContainer/PanelContainer/VBoxContainer/SnapVectorContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1000.0
+step = 0.001
+value = 1.0
+alignment = 3
+prefix = "X"
+custom_arrow_step = 1.0
+select_all_on_focus = true
+
+[node name="SnapVectorY" type="SpinBox" parent="HBoxContainer/PanelContainer/VBoxContainer/SnapVectorContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1000.0
+step = 0.001
+value = 1.0
+alignment = 3
+prefix = "Y"
+custom_arrow_step = 1.0
+select_all_on_focus = true
+
+[node name="SnapVectorZ" type="SpinBox" parent="HBoxContainer/PanelContainer/VBoxContainer/SnapVectorContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1000.0
+step = 0.001
+value = 1.0
+alignment = 3
+prefix = "Z"
+custom_arrow_step = 1.0
+select_all_on_focus = true
+
+[node name="ShowAdvancedCheckBox" type="CheckButton" parent="HBoxContainer/PanelContainer/VBoxContainer" node_paths=PackedStringArray("nodes_to_hide")]
+layout_mode = 2
+text = "Advanced"
+script = SubResource("GDScript_wx5vh")
+nodes_to_hide = [NodePath("../HSeparator"), NodePath("../RenameTab"), NodePath("../AddTab"), NodePath("../RemoveTab"), NodePath("../ButtonSizeSlider")]
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="RenameTab" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Rename Tab"
+
+[node name="AddTab" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Add Tab"
+
+[node name="RemoveTab" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Remove Tab"
+
+[node name="ButtonSizeSlider" type="HSlider" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+min_value = 0.3
+max_value = 1.5
+step = 0.001
+value = 0.9
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemTabContainer" type="TabContainer" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+drag_to_rearrange_enabled = true
+
+[node name="Landscape" type="ScrollContainer" parent="HBoxContainer/VBoxContainer/ItemTabContainer" instance=ExtResource("2_t0eui")]
+layout_mode = 2
+script = ExtResource("3_6q7ti")
+metadata/_tab_index = 0
+
+[node name="FileDialog" type="FileDialog" parent="HBoxContainer"]
+size = Vector2i(392, 175)
+
+[node name="Warning" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0.94902)
+
+[node name="Label" type="Label" parent="Warning"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -383.0
+offset_top = -41.5
+offset_right = 383.0
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "Must select a parent node in scene."
+
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/Add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/RemoveItem" to="." method="_on_remove_item_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/MoveItemLeft" to="." method="_on_move_item_left_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/MoveItemRight" to="." method="_on_move_item_right_pressed"]
+[connection signal="toggled" from="HBoxContainer/PanelContainer/VBoxContainer/SnapEnabledCheckBox" to="HBoxContainer/PanelContainer/VBoxContainer/SnapVectorContainer" method="set_visible"]
+[connection signal="ready" from="HBoxContainer/PanelContainer/VBoxContainer/SnapVectorContainer" to="HBoxContainer/PanelContainer/VBoxContainer/SnapVectorContainer" method="set_visible" binds= [false]]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/RenameTab" to="." method="_on_rename_tab_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/AddTab" to="." method="_on_add_tab_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/RemoveTab" to="." method="_on_remove_tab_pressed"]
+[connection signal="value_changed" from="HBoxContainer/PanelContainer/VBoxContainer/ButtonSizeSlider" to="." method="_on_button_size_slider_value_changed"]

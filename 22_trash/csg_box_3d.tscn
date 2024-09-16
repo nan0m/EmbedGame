@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://ccudiioelowsg"]
+
+[node name="CSGBox3D" type="CSGBox3D"]
+use_collision = true

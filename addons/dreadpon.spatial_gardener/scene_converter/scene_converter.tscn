@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4gravhvudlcd"]
+
+[ext_resource type="Script" path="res://addons/dreadpon.spatial_gardener/scene_converter/scene_converter.gd" id="1"]
+
+[node name="SceneConverter" type="Node"]
+script = ExtResource("1")

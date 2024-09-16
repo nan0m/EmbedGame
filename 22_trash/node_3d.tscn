@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6co8nxwsb6yd"]
+
+[ext_resource type="Script" path="res://22_trash/window.gd" id="1_56ta5"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Window" type="Window" parent="."]
+handle_input_locally = false
+transient = true
+exclusive = true
+script = ExtResource("1_56ta5")
+
+[node name="ColorRect" type="ColorRect" parent="Window"]
+offset_right = 40.0
+offset_bottom = 40.0

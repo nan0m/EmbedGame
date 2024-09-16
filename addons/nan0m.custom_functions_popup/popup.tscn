@@ -1,0 +1,214 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjtsypqlpdwaf"]
+
+[ext_resource type="Script" path="res://addons/nan0m.custom_functions_popup/popup.gd" id="1_4ufjp"]
+
+[sub_resource type="Theme" id="Theme_qe1j7"]
+Button/font_sizes/font_size = 16
+
+[node name="PopupPanel" type="PopupPanel"]
+size = Vector2i(470, 218)
+visible = true
+
+[node name="Nan0m" type="VBoxContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -214.0
+offset_right = 466.0
+offset_bottom = -4.0
+grow_vertical = 0
+size_flags_horizontal = 10
+size_flags_vertical = 10
+theme = SubResource("Theme_qe1j7")
+script = ExtResource("1_4ufjp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Nan0m"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Nan0m/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+
+[node name="ExtractMeshFile" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+tooltip_text = "If the currently selected node has a .mesh associated with it, this will extract that .mesh file.
+
+Useful for quickly getting a .mesh only from e.g. a .glb scene"
+text = "Extract .mesh file"
+
+[node name="ExtractMeshFileDialog" type="FileDialog" parent="Nan0m/VBoxContainer/VBoxContainer/ExtractMeshFile"]
+
+[node name="PerformanceMode" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+tooltip_text = "add #performance_toggle to any node and it will be hidden when this button is pressed"
+toggle_mode = true
+keep_pressed_outside = true
+text = "Scene Performance Mode"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Nan0m/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Select" type="Label" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Select"
+
+[node name="HTerrain" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "HTerrain"
+
+[node name="Gardener" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Gardener"
+
+[node name="Player" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Player"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Nan0m/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Toggle VirtualCameras" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+toggle_mode = true
+text = "Camera Debug"
+
+[node name="UpdateEditorCollider" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Update Terrain Collider"
+
+[node name="ReloadCurrentScene" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Reload Cur Scene"
+
+[node name="ToggleAudioDebug" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+toggle_mode = true
+text = "Audio Debug"
+
+[node name="ToggleWindDebug" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+toggle_mode = true
+text = "Wind Debug"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Nan0m/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Node" type="Label" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Node:"
+
+[node name="NodeToTop" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "To Top"
+
+[node name="NodeToBottom" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "To Bottom
+"
+
+[node name="Reinstance Selected Tscn" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Re-instance selected tscn"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Nan0m/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AlwaysOnTop" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+toggle_mode = true
+text = "Always on Top"
+
+[node name="Label" type="Label" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Reset: "
+
+[node name="ResetAll" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "All"
+
+[node name="ResetScale" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Scale"
+
+[node name="ResetPosition" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Position
+"
+
+[node name="ResetRotation" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Rotation"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Nan0m/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Transform"
+
+[node name="TransformCopy" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Grab"
+
+[node name="TransformPaste" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Place"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Nan0m/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "Editor Cam: "
+
+[node name="EditorCam45Angle" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "45° "
+
+[node name="ScanFileChanges" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "Force Reimport"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Nan0m/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrShot" type="Button" parent="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer5"]
+visible = false
+layout_mode = 2
+text = "ScrShot"
+
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/ExtractMeshFile" to="Nan0m" method="_on_ExtractMeshFile_pressed"]
+[connection signal="file_selected" from="Nan0m/VBoxContainer/VBoxContainer/ExtractMeshFile/ExtractMeshFileDialog" to="Nan0m" method="_on_ExtractMeshFileDialog_file_selected"]
+[connection signal="toggled" from="Nan0m/VBoxContainer/VBoxContainer/PerformanceMode" to="Nan0m" method="_on_PerformanceMode_toggled"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer3/HTerrain" to="Nan0m" method="_on_h_terrain_pressed"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer3/Gardener" to="Nan0m" method="_on_gardener_pressed"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer3/Player" to="Nan0m" method="_on_player_pressed"]
+[connection signal="toggled" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer2/Toggle VirtualCameras" to="Nan0m" method="_on_toggle_virtual_cameras_toggled"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer2/UpdateEditorCollider" to="Nan0m" method="_on_update_editor_collider_pressed"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer2/ReloadCurrentScene" to="Nan0m" method="_on_reload_current_scene_pressed"]
+[connection signal="toggled" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer2/ToggleAudioDebug" to="Nan0m" method="_on_toggle_audio_debug_toggled"]
+[connection signal="toggled" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer2/ToggleWindDebug" to="Nan0m" method="_on_toggle_wind_debug_toggled"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer/NodeToTop" to="Nan0m" method="_on_node_to_top_pressed"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer/NodeToBottom" to="Nan0m" method="_on_node_to_bottom_pressed"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer/Reinstance Selected Tscn" to="Nan0m" method="_on_reinstance_selected_tscn_pressed"]
+[connection signal="toggled" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer4/AlwaysOnTop" to="Nan0m" method="_on_button_toggled"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer4/ResetAll" to="Nan0m" method="_on_reset_all_pressed"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer4/ResetScale" to="Nan0m" method="_on_reset_scale_pressed"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer4/ResetPosition" to="Nan0m" method="_on_reset_position_pressed"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer4/ResetRotation" to="Nan0m" method="_on_reset_rotation_pressed"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer6/TransformCopy" to="Nan0m" method="_on_transform_copy_pressed"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer6/TransformPaste" to="Nan0m" method="_on_transform_paste_pressed"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer7/EditorCam45Angle" to="Nan0m" method="_on_editor_cam_45_angle_pressed"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer7/ScanFileChanges" to="Nan0m" method="_on_scan_file_changes_pressed"]
+[connection signal="pressed" from="Nan0m/VBoxContainer/VBoxContainer/HBoxContainer5/ScrShot" to="Nan0m" method="_on_button_pressed"]

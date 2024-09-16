@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://dch8kh1sul2e8"]
+
+[ext_resource type="Script" path="res://22_trash/exampe.gd" id="1_kk0ye"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_14dhw"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_5sssq"]
+sky_material = SubResource("ProceduralSkyMaterial_14dhw")
+
+[sub_resource type="Environment" id="Environment_2phae"]
+background_mode = 2
+sky = SubResource("Sky_5sssq")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="GDScript" id="GDScript_jaamq"]
+script/source = "extends CharacterBody3D
+
+
+const SPEED = 5.0
+const JUMP_VELOCITY = 4.5
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	#if not is_on_floor():
+		#velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var input_dir := Input.get_vector(\"ui_left\", \"ui_right\", \"ui_up\", \"ui_down\")
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+	move_and_slide()
+"
+
+[node name="debugtest" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2phae")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.997056, -0.0373493, 0.0669717, 0, 0.873365, 0.487065, -0.0766823, -0.485631, 0.870794, 0.267887, 1.94826, 3.48318)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+motion_mode = 1
+script = SubResource("GDScript_jaamq")
+
+[node name="Node3D" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5043, 0, 0)
+
+[node name="exampe" type="Node3D" parent="CharacterBody3D/Node3D"]
+script = ExtResource("1_kk0ye")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CharacterBody3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-1.02028e-08, 0, -0.233414, 0, 0.233414, 0, 0.233414, 0, -1.02028e-08, 0.738198, 0, -16.7398)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1.36814e-09, -0.894064, 0.0312995, -3.90808e-08, -0.0312995, -0.894064, 0.894612, -7.675e-16, -3.91047e-08, 0.943589, 1.79195, -1.68237)
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1.36814e-09, -0.894064, 0.0312995, -3.90808e-08, -0.0312995, -0.894064, 0.894612, -7.675e-16, -3.91047e-08, -3.94032, 3.07296, -5.26604)
