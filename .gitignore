@@ -13,3 +13,5 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+addons/debug_draw_3d/libs/~libdd3d.windows.editor.x86_64.dll
+addons/godot-jolt/windows/~godot-jolt_windows-x64_editor.dll
