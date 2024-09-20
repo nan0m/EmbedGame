@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmjiggwp70mqh"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_0wo4a"]
+[ext_resource type="Script" path="res://character_body_2d.gd" id="2_sp55q"]
+[ext_resource type="Texture2D" uid="uid://btfc4wtbl8eti" path="res://icon.svg" id="3_d81gr"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_0wo4a")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("2_sp55q")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("3_d81gr")
