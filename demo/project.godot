@@ -25,7 +25,7 @@ window/subwindows/embed_subwindows=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/kenyoni/plugin_reloader/plugin.cfg", "res://addons/nan0m.embed_game/plugin.cfg", "res://addons/zylann.editor_debugger/plugin.cfg")
+enabled=PackedStringArray("res://addons/kenyoni/plugin_reloader/plugin.cfg", "res://addons/nan0m.embed_game/plugin.cfg")
 
 [file_customization]
 

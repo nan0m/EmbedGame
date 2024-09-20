@@ -17,6 +17,10 @@ void EmbedGame::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("store_window_style"), &EmbedGame::store_window_style);
 	ClassDB::bind_method(D_METHOD("revert_window_style"), &EmbedGame::revert_window_style);
 	ClassDB::bind_method(D_METHOD("unmake_child", "child_hwnd"), &EmbedGame::unmake_child);
+	ClassDB::bind_method(D_METHOD("store_window_placement", "hwnd"), &EmbedGame::store_window_placement);
+	ClassDB::bind_method(D_METHOD("show_window", "hwnd", "flag"), &EmbedGame::show_window);
+	ClassDB::bind_method(D_METHOD("embed_window", "parent_hwnd", "child_hwnd"), &EmbedGame::embed_window);
+
 
 
 }
@@ -26,6 +30,8 @@ EmbedGame::EmbedGame() {
 	// time_passed = 0.0;
 	stored_style = 0;
 	stored_ex_style = 0;
+	stored_window_placement = {0};
+	// stored_window_rect ;
 
 }
 
@@ -56,13 +62,17 @@ void EmbedGame::set_window_borderless(int hwnd_int) {
 };
 void EmbedGame::store_window_style(int hwnd_int){
 	HWND hwnd = (HWND)(hwnd_int);
+	EmbedGame::store_window_placement(reinterpret_cast<uintptr_t>(hwnd));
+
     // Get the current window styles
     LONG style = GetWindowLong(hwnd, GWL_STYLE);
     LONG exStyle = GetWindowLong(hwnd, GWL_EXSTYLE);
 
+	// stored_window_rect=
 	//store original styles
 	stored_style = style;
 	stored_ex_style = exStyle;
+
 };
 void EmbedGame::revert_window_style(int hwnd_int){
 	HWND hwnd = (HWND)(hwnd_int);
@@ -70,8 +80,9 @@ void EmbedGame::revert_window_style(int hwnd_int){
     SetWindowLong(hwnd, GWL_STYLE, stored_style);
     SetWindowLong(hwnd, GWL_EXSTYLE, stored_ex_style);
 
-    // Redraw the window with the new style
-    SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+    // Redraw the window with the 	new style
+    // SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+	SetWindowPlacement(hwnd, &stored_window_placement);
 };
 
 int EmbedGame::get_hwnd_by_title(String title){
@@ -91,6 +102,20 @@ void EmbedGame::set_window_rect(int hwnd_as_int, Rect2i rect){
 
 };
 
+void EmbedGame::store_window_placement(int hwnd_int) {
+	HWND hwnd = (HWND)(hwnd_int);
+    WINDOWPLACEMENT win_pl = {0}; // Initialize structure
+    win_pl.length = sizeof(WINDOWPLACEMENT); // Must be set before use
+
+    if (GetWindowPlacement(hwnd, &win_pl)) {
+        stored_window_placement = win_pl; // Store only if successful
+		UtilityFunctions::printt("success", win_pl.rcNormalPosition.right);
+    } else {
+        // Handle error if needed
+		UtilityFunctions::print("failure");
+
+    }
+}
 
 void EmbedGame::make_child(int parent_window_hwnd, int child_window_hwnd){
 	HWND parent_hwnd = (HWND)(parent_window_hwnd);
@@ -102,3 +127,19 @@ void EmbedGame::unmake_child(int child_window_hwnd){
 	HWND child_hwnd = (HWND)(child_window_hwnd);
 	SetParent(child_hwnd, NULL);
 	}
+
+void EmbedGame::show_window(int hwnd_int, bool flag){
+	HWND hwnd = (HWND)(hwnd_int);
+	if (flag){
+		ShowWindow(hwnd, SW_RESTORE);
+	} else{
+		ShowWindow(hwnd, SW_HIDE);
+	};
+
+}
+
+void EmbedGame::embed_window(int parent_window_hwnd, int child_window_hwnd){
+	store_window_style(child_window_hwnd);
+	set_window_borderless(child_window_hwnd);
+	make_child(parent_window_hwnd, child_window_hwnd);
+};
