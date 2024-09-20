@@ -10,16 +10,14 @@ config_version=5
 
 [application]
 
-config/name="CultureJam"
-run/main_scene="res://22_trash/debugtest.tscn"
+config/name="EmbedGame"
+run/main_scene="res://test_scene/test_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 WindowBGone="*res://addons/window_b_gone/wbg_autoload.gd"
-PauseMenu="*res://02_ui/pause_menu/pause_menu.tscn"
-SceneLoader="*res://01_assets/autoload/scene_loader/scene_loader.tscn"
 EmbedGameAutoload="*res://addons/nan0m.embed_game/embed_game_autoload.gd"
 
 [display]

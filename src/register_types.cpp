@@ -1,6 +1,6 @@
 #include "register_types.h"
 
-#include "embed_window.h"
+#include "embed_game.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -11,15 +11,15 @@ using namespace godot;
 
 void initialize_example_module(ModuleInitializationLevel p_level) {
 	if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
-		ClassDB::register_class<EmbedWindow>();
-		// EditorPlugins::add_by_type<EmbedWindow>();
+		ClassDB::register_class<EmbedGame>();
+		// EditorPlugins::add_by_type<EmbedGame>();
 	}
 // #ifdef TOOLS_ENABLED
 // 	if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
 
-// 	GDREGISTER_CLASS(EmbedWindow);
+// 	GDREGISTER_CLASS(EmbedGame);
 
-	// EditorPlugins::add_by_type<EmbedWindow>();
+	// EditorPlugins::add_by_type<EmbedGame>();
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level) {
@@ -30,7 +30,7 @@ void uninitialize_example_module(ModuleInitializationLevel p_level) {
 
 extern "C" {
 // Initialization.
-GDExtensionBool GDE_EXPORT embed_window_init(GDExtensionInterfaceGetProcAddress p_get_proc_address, const GDExtensionClassLibraryPtr p_library, GDExtensionInitialization *r_initialization) {
+GDExtensionBool GDE_EXPORT embed_game_init(GDExtensionInterfaceGetProcAddress p_get_proc_address, const GDExtensionClassLibraryPtr p_library, GDExtensionInitialization *r_initialization) {
 	godot::GDExtensionBinding::InitObject init_obj(p_get_proc_address, p_library, r_initialization);
 
 	init_obj.register_initializer(initialize_example_module);

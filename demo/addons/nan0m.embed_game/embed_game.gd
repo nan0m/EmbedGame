@@ -80,6 +80,9 @@ func _enter_tree():
 	self.get_window().mouse_exited.connect(send_focus_update)
 	
 func _on_activate_button_toggled(flag: bool):
+	var w = EmbedGame.new()
+	#w.get_hwnd_by_title("EmbedGame (DEBUG)")
+	print(	w.get_hwnd_by_title("EmbedGame (DEBUG)"))
 	self.queue_save_layout() ## saves setting
 	if flag:
 		embed_window()

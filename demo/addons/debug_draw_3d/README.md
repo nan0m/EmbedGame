@@ -87,17 +87,17 @@ Simple test:
 
 ```gdscript
 func _process(delta: float) -> void:
-    var _time = Time.get_ticks_msec() / 1000.0
-    var box_pos = Vector3(0, sin(_time * 4), 0)
-    var line_begin = Vector3(-1, sin(_time * 4), 0)
-    var line_end = Vector3(1, cos(_time * 4), 0)
+	var _time = Time.get_ticks_msec() / 1000.0
+	var box_pos = Vector3(0, sin(_time * 4), 0)
+	var line_begin = Vector3(-1, sin(_time * 4), 0)
+	var line_end = Vector3(1, cos(_time * 4), 0)
 
-    DebugDraw3D.draw_box(box_pos, Vector3(1, 2, 1), Color(0, 1, 0))
-    DebugDraw3D.draw_line(line_begin, line_end, Color(1, 1, 0))
-    DebugDraw2D.set_text("Time", _time)
-    DebugDraw2D.set_text("Frames drawn", Engine.get_frames_drawn())
-    DebugDraw2D.set_text("FPS", Engine.get_frames_per_second())
-    DebugDraw2D.set_text("delta", delta)
+	DebugDraw3D.draw_box(box_pos, Vector3(1, 2, 1), Color(0, 1, 0))
+	DebugDraw3D.draw_line(line_begin, line_end, Color(1, 1, 0))
+	DebugDraw2D.set_text("Time", _time)
+	DebugDraw2D.set_text("Frames drawn", Engine.get_frames_drawn())
+	DebugDraw2D.set_text("FPS", Engine.get_frames_per_second())
+	DebugDraw2D.set_text("delta", delta)
 ```
 
 ![screenshot_1](/images/screenshot_1.png)
@@ -109,22 +109,22 @@ An example of using scoped configs:
 extends Node3D
 
 func _ready():
-    # Set the base scoped_config.
-    # Each frame will be reset to these scoped values.
-    DebugDraw3D.scoped_config().set_thickness(0.1).set_center_brightness(0.6)
+	# Set the base scoped_config.
+	# Each frame will be reset to these scoped values.
+	DebugDraw3D.scoped_config().set_thickness(0.1).set_center_brightness(0.6)
 
 func _process(delta):
-    # Draw using the base scoped config.
-    DebugDraw3D.draw_box(Vector3.ZERO, Quaternion.IDENTITY, Vector3.ONE * 2, Color.CORNFLOWER_BLUE)
-    if true:
-        # Create a scoped config that will exist until exiting this if.
-        var _s = DebugDraw3D.new_scoped_config().set_thickness(0).set_center_brightness(0.1)
-        # Draw with a thickness of 0
-        DebugDraw3D.draw_box(Vector3.ZERO, Quaternion.IDENTITY, Vector3.ONE, Color.RED)
-        # If necessary, the values inside this scope can be changed
-        # even before each call to draw_*.
-        _s.set_thickness(0.05)
-        DebugDraw3D.draw_box(Vector3(1,0,1), Quaternion.IDENTITY, Vector3.ONE * 1, Color.BLUE_VIOLET)
+	# Draw using the base scoped config.
+	DebugDraw3D.draw_box(Vector3.ZERO, Quaternion.IDENTITY, Vector3.ONE * 2, Color.CORNFLOWER_BLUE)
+	if true:
+		# Create a scoped config that will exist until exiting this if.
+		var _s = DebugDraw3D.new_scoped_config().set_thickness(0).set_center_brightness(0.1)
+		# Draw with a thickness of 0
+		DebugDraw3D.draw_box(Vector3.ZERO, Quaternion.IDENTITY, Vector3.ONE, Color.RED)
+		# If necessary, the values inside this scope can be changed
+		# even before each call to draw_*.
+		_s.set_thickness(0.05)
+		DebugDraw3D.draw_box(Vector3(1,0,1), Quaternion.IDENTITY, Vector3.ONE * 1, Color.BLUE_VIOLET)
 ```
 
 ![screenshot_5](/images/screenshot_5.png)
