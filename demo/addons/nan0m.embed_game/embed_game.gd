@@ -38,8 +38,8 @@ func _enter_tree():
 	is_playing_scene = EditorInterface.get_playing_scene() != ""
 	
 	if not ProjectSettings.has_setting("embed_game/padding"):
-		ProjectSettings.set_setting("embed_game/padding", int(2))
-		ProjectSettings.set_initial_value("embed_game/padding", int(2))
+		ProjectSettings.set_setting("embed_game/padding", int(0))
+		ProjectSettings.set_initial_value("embed_game/padding", int(0))
 		ProjectSettings.save()
 func _exit_tree():
 	hbox.queue_free()
