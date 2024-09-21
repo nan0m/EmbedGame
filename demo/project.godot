@@ -19,13 +19,9 @@ config/icon="res://icon.svg"
 
 EmbedGameAutoload="*res://addons/nan0m.embed_game/embed_game_autoload.gd"
 
-[display]
-
-window/subwindows/embed_subwindows=false
-
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/kenyoni/plugin_reloader/plugin.cfg", "res://addons/nan0m.embed_game/plugin.cfg")
+enabled=PackedStringArray("res://addons/editor_icon_previewer/plugin.cfg", "res://addons/kenyoni/plugin_reloader/plugin.cfg", "res://addons/nan0m.embed_game/plugin.cfg")
 
 [file_customization]
 

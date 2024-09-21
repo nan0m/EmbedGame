@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dj8rmwfsou13d"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tpckn"]
-
-[node name="EmbedButtonTextureRect" type="TextureRect"]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = SubResource("CompressedTexture2D_tpckn")

@@ -58,7 +58,7 @@ void EmbedGame::set_window_borderless(int hwnd_int) {
     SetWindowLong(hwnd, GWL_EXSTYLE, exStyle);
 
     // Redraw the window with the new style
-    SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+    SetWindowPos(hwnd, NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_FRAMECHANGED);
 };
 void EmbedGame::store_window_style(int hwnd_int){
 	HWND hwnd = (HWND)(hwnd_int);
@@ -109,11 +109,8 @@ void EmbedGame::store_window_placement(int hwnd_int) {
 
     if (GetWindowPlacement(hwnd, &win_pl)) {
         stored_window_placement = win_pl; // Store only if successful
-		UtilityFunctions::printt("success", win_pl.rcNormalPosition.right);
     } else {
         // Handle error if needed
-		UtilityFunctions::print("failure");
-
     }
 }
 

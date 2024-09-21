@@ -6,7 +6,6 @@ func _ready() -> void:
 
 	EngineDebugger.send_message("transmit_handle:",[DisplayServer.window_get_native_handle(DisplayServer.WINDOW_HANDLE, self.get_window().get_window_id())])
 
-
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.ctrl_pressed and event.pressed:

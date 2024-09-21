@@ -56,6 +56,7 @@ func _build():
 
 func _on_activate_button_toggled(flag: bool):
 	self.queue_save_layout() ## saves setting
+	#if not is_playing_scene: return
 	if flag:
 		embed_window()
 		if is_playing_scene:
@@ -195,23 +196,14 @@ func get_top_buttons() -> Array[Node]:
 
 
 #region Editor Plugin specific functions
-## main screen plugin setup
 func _has_main_screen():
 	return true
-	
 func _get_plugin_name():
 	return "Embed"
-	
 func _make_visible(visible):
 	plugin_control.visible = visible
 func _get_plugin_icon():
-	return preload("res://addons/nan0m.embed_game/assets/embed_icon.svg")
-
-
-
-
-
-
+	return preload("res://addons/nan0m.embed_game/assets/icon.png")
 
 
 #region Debugger Setup
