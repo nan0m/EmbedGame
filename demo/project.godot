@@ -17,11 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-EmbedGameAutoload="*res://addons/nan0m.embed_game/embed_game_autoload.gd"
+EmbedGameAutoload="*res://addons/fabimakesgames.embed_game/embed_game_autoload.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/editor_icon_previewer/plugin.cfg", "res://addons/kenyoni/plugin_reloader/plugin.cfg", "res://addons/nan0m.embed_game/plugin.cfg")
+enabled=PackedStringArray("res://addons/editor_icon_previewer/plugin.cfg", "res://addons/kenyoni/plugin_reloader/plugin.cfg", "res://addons/fabimakesgames.embed_game/plugin.cfg")
 
 [embed_game]
 
@@ -34,7 +34,7 @@ folder_colors={
 "res://01_assets/meshes/": "teal",
 "res://01_assets/statemachine/": "purple",
 "res://11_leon/": "yellow",
-"res://addons/nan0m.embed_game/": "orange"
+"res://addons/fabimakesgames.embed_game/": "orange"
 }
 
 [importer_defaults]
