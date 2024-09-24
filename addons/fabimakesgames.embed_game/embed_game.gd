@@ -2,7 +2,7 @@
 extends EditorPlugin
 
 const debug: bool = false
-const library = preload("res://addons/nan0m.embed_game/embed_game_library.gd")
+const library = preload("res://addons/fabimakesgames.embed_game/embed_game_library.gd")
 var debugger: EditorDebugger
 var sesh: EditorDebuggerSession
 var last_window_position: Vector2i
@@ -54,10 +54,10 @@ func _get_plugin_name():
 func _make_visible(visible):
 	plugin_control.visible = visible
 func _get_plugin_icon():
-	return preload("res://addons/nan0m.embed_game/assets/embed_icon.svg")
+	return preload("res://addons/fabimakesgames.embed_game/assets/embed_icon.svg")
 
 func _enter_tree():
-	add_autoload_singleton("EmbedGameAutoload","res://addons/nan0m.embed_game/embed_game_autoload.gd")
+	add_autoload_singleton("EmbedGameAutoload","res://addons/fabimakesgames.embed_game/embed_game_autoload.gd")
 	
 	## add checkbutton and reparent 'embed' button
 	_add_control_elements()
@@ -121,9 +121,9 @@ func _add_control_elements():
 	last_main_screen_not_embed = top_buttons[0].name ## so it's never an empty string
 	top_bar_button.get_parent().add_child(hbox)
 	top_bar_button.reparent(hbox)
-	top_bar_button.shortcut = load("res://addons/nan0m.embed_game/config/embed_shortcut.tres")
+	top_bar_button.shortcut = load("res://addons/fabimakesgames.embed_game/config/embed_shortcut.tres")
 	top_bar_button.visible = false
-	activate_button = preload("res://addons/nan0m.embed_game/embed_button.tscn").instantiate()
+	activate_button = preload("res://addons/fabimakesgames.embed_game/embed_button.tscn").instantiate()
 	activate_button.toggled.connect(_on_activate_button_toggled)
 	hbox.add_child(activate_button,true)
 	

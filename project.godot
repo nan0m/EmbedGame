@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 WindowBGone="*res://addons/window_b_gone/wbg_autoload.gd"
 PauseMenu="*res://02_ui/pause_menu/pause_menu.tscn"
 SceneLoader="*res://01_assets/autoload/scene_loader/scene_loader.tscn"
-EmbedGameAutoload="*res://addons/nan0m.embed_game/embed_game_autoload.gd"
+EmbedGameAutoload="*res://addons/fabimakesgames.embed_game/embed_game_autoload.gd"
 
 [display]
 
@@ -28,7 +28,7 @@ window/subwindows/embed_subwindows=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/nan0m.embed_game/plugin.cfg")
+enabled=PackedStringArray("res://addons/fabimakesgames.embed_game/plugin.cfg")
 
 [file_customization]
 

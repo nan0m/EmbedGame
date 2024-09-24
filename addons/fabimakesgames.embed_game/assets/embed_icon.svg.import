@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtnargm6x2r7s"
-path="res://.godot/imported/embed_icon.svg-f6034b59f6e8606e170853d38d2926a5.ctex"
+path="res://.godot/imported/embed_icon.svg-b7bbeef73b353ae5ea3bbb0b50954000.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/nan0m.embed_game/assets/embed_icon.svg"
-dest_files=["res://.godot/imported/embed_icon.svg-f6034b59f6e8606e170853d38d2926a5.ctex"]
+source_file="res://addons/fabimakesgames.embed_game/assets/embed_icon.svg"
+dest_files=["res://.godot/imported/embed_icon.svg-b7bbeef73b353ae5ea3bbb0b50954000.ctex"]
 
 [params]
 

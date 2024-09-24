@@ -2,7 +2,7 @@ extends Node
 
 const debug_enabled = false
 var window_conf_startup: WindowConfig
-const library = preload("res://addons/nan0m.embed_game/embed_game_library.gd")
+const library = preload("res://addons/fabimakesgames.embed_game/embed_game_library.gd")
 var is_editor_focused: bool
 
 class WindowConfig:
