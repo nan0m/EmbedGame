@@ -246,9 +246,15 @@ func set_window_mode(mode: DisplayServer.WindowMode):
 func get_top_buttons() -> Array[Node]:
 	var cont := Control.new()
 	add_control_to_container(CustomControlContainer.CONTAINER_TOOLBAR, cont)
-	var btns := cont.get_parent().get_child(2).get_children()
+	var btns := cont.get_parent().get_child(get_top_buttons_position()).get_children()
 	remove_control_from_container(CustomControlContainer.CONTAINER_TOOLBAR, cont)
 	return btns
+	
+func get_top_buttons_position() -> int:
+	var top_buttons_position = 2
+	if OS.get_name() == "macOS":
+		top_buttons_position = 3
+	return top_buttons_position
 	
 func get_main_screen_rect() -> Rect2i:
 	var main_screen : = EditorInterface.get_editor_main_screen()
