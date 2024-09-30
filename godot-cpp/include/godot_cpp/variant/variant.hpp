@@ -100,7 +100,6 @@ public:
 		PACKED_VECTOR2_ARRAY,
 		PACKED_VECTOR3_ARRAY,
 		PACKED_COLOR_ARRAY,
-		PACKED_VECTOR4_ARRAY,
 
 		VARIANT_MAX
 	};
@@ -213,7 +212,6 @@ public:
 	Variant(const PackedVector2Array &v);
 	Variant(const PackedVector3Array &v);
 	Variant(const PackedColorArray &v);
-	Variant(const PackedVector4Array &v);
 	~Variant();
 
 	operator bool() const;
@@ -262,7 +260,6 @@ public:
 	operator PackedVector2Array() const;
 	operator PackedVector3Array() const;
 	operator PackedColorArray() const;
-	operator PackedVector4Array() const;
 
 	Variant &operator=(const Variant &other);
 	Variant &operator=(Variant &&other);

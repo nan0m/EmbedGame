@@ -29,7 +29,6 @@ void initialize_example_module(ModuleInitializationLevel p_level) {
 	GDREGISTER_CLASS(ExampleConcrete);
 	GDREGISTER_CLASS(ExampleBase);
 	GDREGISTER_CLASS(ExampleChild);
-	GDREGISTER_RUNTIME_CLASS(ExampleRuntime);
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level) {

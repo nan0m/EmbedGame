@@ -35,28 +35,10 @@
 
 namespace godot {
 
-Vector2i Vector2i::snapped(const Vector2i &p_step) const {
-	return Vector2i(
-			Math::snapped(x, p_step.x),
-			Math::snapped(y, p_step.y));
-}
-
-Vector2i Vector2i::snappedi(int32_t p_step) const {
-	return Vector2i(
-			Math::snapped(x, p_step),
-			Math::snapped(y, p_step));
-}
-
 Vector2i Vector2i::clamp(const Vector2i &p_min, const Vector2i &p_max) const {
 	return Vector2i(
 			CLAMP(x, p_min.x, p_max.x),
 			CLAMP(y, p_min.y, p_max.y));
-}
-
-Vector2i Vector2i::clampi(int32_t p_min, int32_t p_max) const {
-	return Vector2i(
-			CLAMP(x, p_min, p_max),
-			CLAMP(y, p_min, p_max));
 }
 
 int64_t Vector2i::length_squared() const {
@@ -65,14 +47,6 @@ int64_t Vector2i::length_squared() const {
 
 double Vector2i::length() const {
 	return Math::sqrt((double)length_squared());
-}
-
-int64_t Vector2i::distance_squared_to(const Vector2i &p_to) const {
-	return (p_to - *this).length_squared();
-}
-
-double Vector2i::distance_to(const Vector2i &p_to) const {
-	return (p_to - *this).length();
 }
 
 Vector2i Vector2i::operator+(const Vector2i &p_v) const {

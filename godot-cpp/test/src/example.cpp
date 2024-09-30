@@ -50,11 +50,6 @@ public:
 		return ObjectID();
 	}
 
-	virtual int get_argument_count(bool &r_is_valid) const {
-		r_is_valid = true;
-		return 2;
-	}
-
 	virtual void call(const Variant **p_arguments, int p_argcount, Variant &r_return_value, GDExtensionCallError &r_call_error) const {
 		r_return_value = "Hi";
 		r_call_error.error = GDEXTENSION_CALL_OK;
@@ -193,8 +188,6 @@ void Example::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("return_extended_ref"), &Example::return_extended_ref);
 	ClassDB::bind_method(D_METHOD("extended_ref_checks", "ref"), &Example::extended_ref_checks);
 
-	ClassDB::bind_method(D_METHOD("is_object_binding_set_by_parent_constructor"), &Example::is_object_binding_set_by_parent_constructor);
-
 	ClassDB::bind_method(D_METHOD("test_array"), &Example::test_array);
 	ClassDB::bind_method(D_METHOD("test_tarray_arg", "array"), &Example::test_tarray_arg);
 	ClassDB::bind_method(D_METHOD("test_tarray"), &Example::test_tarray);
@@ -239,10 +232,6 @@ void Example::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("def_args", "a", "b"), &Example::def_args, DEFVAL(100), DEFVAL(200));
 	ClassDB::bind_method(D_METHOD("callable_bind"), &Example::callable_bind);
 	ClassDB::bind_method(D_METHOD("test_post_initialize"), &Example::test_post_initialize);
-
-	GDVIRTUAL_BIND(_do_something_virtual, "name", "value");
-	ClassDB::bind_method(D_METHOD("test_virtual_implemented_in_script"), &Example::test_virtual_implemented_in_script);
-	GDVIRTUAL_BIND(_do_something_virtual_with_control, "control");
 
 	ClassDB::bind_method(D_METHOD("test_use_engine_singleton"), &Example::test_use_engine_singleton);
 
@@ -296,17 +285,7 @@ void Example::_bind_methods() {
 	BIND_ENUM_CONSTANT(OUTSIDE_OF_CLASS);
 }
 
-bool Example::has_object_instance_binding() const {
-	return internal::gdextension_interface_object_get_instance_binding(_owner, internal::token, nullptr);
-}
-
-Example::Example() :
-		object_instance_binding_set_by_parent_constructor(has_object_instance_binding()) {
-	// Test conversion, to ensure users can use all parent class functions at this time.
-	// It would crash if instance binding still not be initialized.
-	Variant v = Variant(this);
-	Object *o = (Object *)v;
-
+Example::Example() {
 	//UtilityFunctions::print("Constructor.");
 }
 
@@ -384,10 +363,6 @@ void Example::varargs_func_void(const Variant **args, GDExtensionInt arg_count, 
 
 void Example::emit_custom_signal(const String &name, int value) {
 	emit_signal("custom_signal", name, value);
-}
-
-bool Example::is_object_binding_set_by_parent_constructor() const {
-	return object_instance_binding_set_by_parent_constructor;
 }
 
 Array Example::test_array() const {
@@ -699,14 +674,6 @@ void ExampleChild::_notification(int p_what) {
 	}
 }
 
-String Example::test_virtual_implemented_in_script(const String &p_name, int p_value) {
-	String ret;
-	if (GDVIRTUAL_CALL(_do_something_virtual, p_name, p_value, ret)) {
-		return ret;
-	}
-	return "Unimplemented";
-}
-
 String Example::test_use_engine_singleton() const {
 	return OS::get_singleton()->get_name();
 }
@@ -715,24 +682,4 @@ String Example::test_library_path() {
 	String library_path;
 	internal::gdextension_interface_get_library_path(internal::library, library_path._native_ptr());
 	return library_path;
-}
-
-void ExampleRuntime::_bind_methods() {
-	ClassDB::bind_method(D_METHOD("set_prop_value", "value"), &ExampleRuntime::set_prop_value);
-	ClassDB::bind_method(D_METHOD("get_prop_value"), &ExampleRuntime::get_prop_value);
-	ADD_PROPERTY(PropertyInfo(Variant::INT, "prop_value"), "set_prop_value", "get_prop_value");
-}
-
-void ExampleRuntime::set_prop_value(int p_prop_value) {
-	prop_value = p_prop_value;
-}
-
-int ExampleRuntime::get_prop_value() const {
-	return prop_value;
-}
-
-ExampleRuntime::ExampleRuntime() {
-}
-
-ExampleRuntime::~ExampleRuntime() {
 }
